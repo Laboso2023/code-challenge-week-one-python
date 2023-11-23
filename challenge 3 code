@@ -1,0 +1,29 @@
+def solve(s):
+    vowels = "aeiou"
+    consonant_values = {chr(i): i - ord('a') + 1 for i in range(ord('a'), ord('z') + 1) if chr(i) not in vowels}
+    
+    def get_consonant_value(substring):
+        return sum(consonant_values[char] for char in substring)
+
+    max_value = 0
+    current_consonant_substring = ""
+
+    for char in s:
+        if char not in vowels:
+            current_consonant_substring += char
+        else:
+            if current_consonant_substring:
+                current_value = get_consonant_value(current_consonant_substring)
+                max_value = max(max_value, current_value)
+                current_consonant_substring = ""
+
+    
+    if current_consonant_substring:
+        current_value = get_consonant_value(current_consonant_substring)
+        max_value = max(max_value, current_value)
+
+    return max_value
+
+
+print(solve("zodiacs"))  
+print(solve("strength"))  
