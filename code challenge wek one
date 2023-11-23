@@ -1,0 +1,14 @@
+def convert_to_24_hour_format(hour, minute, period):
+    if period.lower() == 'pm' and hour != 12:
+        hour += 12
+    elif period.lower() == 'am' and hour == 12:
+        hour = 0
+
+    return "{:02d}{:02d}".format(hour, minute)
+
+
+time_24_hour = convert_to_24_hour_format(8, 30, 'am')
+print(time_24_hour)  
+
+time_24_hour_pm = convert_to_24_hour_format(8, 30, 'pm')
+print(time_24_hour_pm)  
